@@ -5,14 +5,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface RestauranteService {
 
     Restaurante salvar(Restaurante restaurante);
 
     Restaurante buscar(Long id);
 
-    Restaurante alterar(Long id, Restaurante restaurante);
+    Restaurante alterar(Restaurante restaurante);
 
     boolean remover(Long id);
 

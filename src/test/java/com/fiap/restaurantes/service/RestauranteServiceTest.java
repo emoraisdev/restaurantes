@@ -1,26 +1,27 @@
 package com.fiap.restaurantes.service;
 
 import com.fiap.restaurantes.exception.EntityNotFoundException;
-import com.fiap.restaurantes.model.Endereco;
 import com.fiap.restaurantes.model.Restaurante;
 import com.fiap.restaurantes.repository.RestauranteRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
-import javax.swing.text.html.Option;
+import java.util.Arrays;
 import java.util.Optional;
-import java.util.concurrent.ThreadLocalRandom;
 
+import static com.fiap.restaurantes.utils.RestauranteHelper.gerarRestaurante;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-public class RestauranteServiceTest {
+class RestauranteServiceTest {
 
     @Mock
     private RestauranteRepository repo;
@@ -57,7 +58,7 @@ public class RestauranteServiceTest {
     @Test
     void devePermitirAlterarRestaurante() {
 
-        var id = ThreadLocalRandom.current().nextLong();
+        var id = 1001L;
         var restaurante = gerarRestaurante();
         restaurante.setId(id);
 
@@ -81,15 +82,15 @@ public class RestauranteServiceTest {
     }
 
     @Test
-    void deveGerarExcecao_QuandoAlterarRestaurante_IdNaoExiste(){
+    void deveGerarExcecao_QuandoAlterarRestaurante_IdNaoExiste() {
 
-        var id = ThreadLocalRandom.current().nextLong();
+        var id = 1002L;
         var restaurante = gerarRestaurante();
         restaurante.setId(id);
 
         when(repo.findById(id)).thenReturn(Optional.empty());
 
-        assertThatThrownBy(() ->  service.alterar(restaurante))
+        assertThatThrownBy(() -> service.alterar(restaurante))
                 .isInstanceOf(EntityNotFoundException.class)
                 .hasMessage("Entidade Restaurante não encontrada.");
 
@@ -99,7 +100,7 @@ public class RestauranteServiceTest {
 
     @Test
     void devePermitirBuscarRestaurante() {
-        var id = ThreadLocalRandom.current().nextLong();
+        var id = 1003L;
         var restaurante = gerarRestaurante();
         restaurante.setId(id);
 
@@ -112,15 +113,15 @@ public class RestauranteServiceTest {
     }
 
     @Test
-    void deveGerarExcecao_QuandoBuscarRestaurante_IdNaoExiste(){
+    void deveGerarExcecao_QuandoBuscarRestaurante_IdNaoExiste() {
 
-        var id = ThreadLocalRandom.current().nextLong();
+        var id = 1004L;
         var restaurante = gerarRestaurante();
         restaurante.setId(id);
 
         when(repo.findById(id)).thenReturn(Optional.empty());
 
-        assertThatThrownBy(() ->  service.buscar(id))
+        assertThatThrownBy(() -> service.buscar(id))
                 .isInstanceOf(EntityNotFoundException.class)
                 .hasMessage("Entidade Restaurante não encontrada.");
 
@@ -130,30 +131,59 @@ public class RestauranteServiceTest {
     @Test
     void devePermitirRemoverRestaurante() {
 
+        var id = 1004L;
+        var restaurante = gerarRestaurante();
+        restaurante.setId(id);
+
+        when(repo.findById(id)).thenReturn(Optional.of(restaurante));
+        doNothing().when(repo).deleteById(id);
+
+        var isRestauranteRemovido = service.remover(id);
+
+        assertThat(isRestauranteRemovido).isTrue();
+
+        verify(repo, times(1)).findById(any(Long.class));
+        verify(repo, times(1)).deleteById(any(Long.class));
+    }
+
+    @Test
+    void deveGerarExcecao_QuandoRemoverRestaurante_IdNaoExiste() {
+
+        var id = 1005L;
+
+        when(repo.findById(id)).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> service.remover(id))
+                .isInstanceOf(EntityNotFoundException.class)
+                .hasMessage("Entidade Restaurante não encontrada.");
+
+        verify(repo, times(1)).findById(any(Long.class));
+        verify(repo, never()).deleteById(any(Long.class));
     }
 
     @Test
     void devePermitirListarRestaurante() {
 
+        //Arrange
+        Page<Restaurante> page = new PageImpl<>(
+                Arrays.asList(gerarRestaurante(), gerarRestaurante(), gerarRestaurante()));
+
+        when(repo.listarRestaurantes(any(Pageable.class))).thenReturn(page);
+
+        //Act
+        var resultadoObtido = service.listar(Pageable.unpaged());
+
+        //Assert
+        assertThat(resultadoObtido).hasSize(3);
+        assertThat(resultadoObtido.getContent()).asList()
+                .allSatisfy(restaurante -> {
+                    assertThat(restaurante).isNotNull().isInstanceOf(Restaurante.class);
+                });
+
+        verify(repo, times(1)).listarRestaurantes(any(Pageable.class));
     }
 
-    private Restaurante gerarRestaurante() {
-        return Restaurante.builder()
-                .nome("Cantina da Vó")
-                .capacidade(50)
-                .telefone("11 11111-1111")
-                .tipoCozinha("Caseira")
-                .horarioFuncionamento("16:00h as 23:30h todos os dias")
-                .endereco(Endereco.builder().rua("Rua XV")
-                        .bairro("Cruzeiro")
-                        .numero("121")
-                        .cep("12345-321")
-                        .cidade("Curitiba")
-                        .estado("PR")
-                        .pais("Brasil").build()).build();
-    }
-
-    private void assertRestaurante(Restaurante restauranteBD, Restaurante restauranteNovo){
+    private void assertRestaurante(Restaurante restauranteBD, Restaurante restauranteNovo) {
         assertThat(restauranteBD).isInstanceOf(Restaurante.class).isNotNull();
         assertThat(restauranteBD.getNome()).isEqualTo(restauranteNovo.getNome());
         assertThat(restauranteBD.getCapacidade()).isEqualTo(restauranteNovo.getCapacidade());

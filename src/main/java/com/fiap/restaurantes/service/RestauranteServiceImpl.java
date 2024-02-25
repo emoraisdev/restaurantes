@@ -4,9 +4,9 @@ import com.fiap.restaurantes.exception.EntityNotFoundException;
 import com.fiap.restaurantes.model.Restaurante;
 import com.fiap.restaurantes.repository.RestauranteRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -34,11 +34,14 @@ public class RestauranteServiceImpl implements RestauranteService {
 
     @Override
     public boolean remover(Long id) {
-        return false;
+        buscar(id);
+        repo.deleteById(id);
+
+        return true;
     }
 
     @Override
-    public List<Restaurante> listar() {
-        return null;
+    public Page<Restaurante> listar(Pageable pageable) {
+        return repo.listarRestaurantes(pageable);
     }
 }

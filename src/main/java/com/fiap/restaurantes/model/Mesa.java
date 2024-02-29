@@ -15,9 +15,9 @@ public class Mesa {
     private Integer numero;
 
     @Column(nullable = false)
-    private Integer capacidade;
+    private int status;
 
     @ManyToOne
-    @JoinColumn(name = "restaurante_id", referencedColumnName = "id")
+    @JoinColumn(name = "restaurante_id", referencedColumnName = "id", nullable = false)
     private Restaurante restaurante;
 }

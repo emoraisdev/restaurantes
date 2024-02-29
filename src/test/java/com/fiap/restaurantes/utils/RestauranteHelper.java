@@ -8,7 +8,7 @@ public class RestauranteHelper {
     public static Restaurante gerarRestaurante() {
         return Restaurante.builder()
                 .nome("Cantina da Vó")
-                .capacidade(50)
+                .qtdMesas(50)
                 .telefone("11 11111-1111")
                 .tipoCozinha("Caseira")
                 .horarioFuncionamento("16:00h as 23:30h todos os dias")

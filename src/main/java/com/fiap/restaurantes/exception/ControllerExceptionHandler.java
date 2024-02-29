@@ -12,14 +12,14 @@ import java.time.Instant;
 public class ControllerExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<StandardError> EntityNotFoundException(EntityNotFoundException erro, HttpServletRequest request){
+    public ResponseEntity<StandardError> entityNotFoundException(final EntityNotFoundException erro, final HttpServletRequest request){
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND.value())
                 .body(getStandardError(HttpStatus.NOT_FOUND.value(), "Entidade Não Encontrada", erro.getMessage(), request.getRequestURI()));
     }
 
     @ExceptionHandler(BusinessException.class)
-    public ResponseEntity<StandardError> BusinessException(BusinessException erro, HttpServletRequest request){
+    public ResponseEntity<StandardError> businessException(BusinessException erro, HttpServletRequest request){
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND.value())
                 .body(getStandardError(HttpStatus.NOT_FOUND.value(), "Erro na solicitação", erro.getMessage(), request.getRequestURI()));

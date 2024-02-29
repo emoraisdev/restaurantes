@@ -18,9 +18,12 @@ public class Cliente {
     private String telefone;
 
     @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
     private String cpf;
 
     @OneToOne
-    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
+    @JoinColumn(name = "endereco_id", referencedColumnName = "id", nullable = false)
     private Endereco endereco;
 }

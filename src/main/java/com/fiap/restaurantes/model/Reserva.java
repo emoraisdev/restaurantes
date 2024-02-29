@@ -21,10 +21,10 @@ public class Reserva {
     private LocalDateTime periodoAte;
 
     @Column(nullable = false)
-    private Integer quantidadePessoas;
+    private int status;
 
     @ManyToOne
-    @JoinColumn(name = "restaurante_id", referencedColumnName = "id")
+    @JoinColumn(name = "restaurante_id", referencedColumnName = "id", nullable = false)
     private Restaurante restaurante;
 
     @ManyToMany
@@ -35,7 +35,7 @@ public class Reserva {
     private List<Mesa> mesa;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id", nullable = false)
     private Cliente cliente;
 
 }

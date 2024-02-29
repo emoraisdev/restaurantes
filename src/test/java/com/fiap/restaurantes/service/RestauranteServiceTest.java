@@ -66,7 +66,7 @@ class RestauranteServiceTest {
         restauranteNovo.setId(restaurante.getId());
         restauranteNovo.setTipoCozinha("Pizza e Massas");
         restauranteNovo.setNome("Pizza Top");
-        restauranteNovo.setCapacidade(100);
+        restauranteNovo.setQtdMesas(100);
         restauranteNovo.setHorarioFuncionamento("24h por dia");
         restauranteNovo.setTelefone("41 22222-2222");
 
@@ -186,7 +186,7 @@ class RestauranteServiceTest {
     private void assertRestaurante(Restaurante restauranteBD, Restaurante restauranteNovo) {
         assertThat(restauranteBD).isInstanceOf(Restaurante.class).isNotNull();
         assertThat(restauranteBD.getNome()).isEqualTo(restauranteNovo.getNome());
-        assertThat(restauranteBD.getCapacidade()).isEqualTo(restauranteNovo.getCapacidade());
+        assertThat(restauranteBD.getQtdMesas()).isEqualTo(restauranteNovo.getQtdMesas());
         assertThat(restauranteBD.getTipoCozinha()).isEqualTo(restauranteNovo.getTipoCozinha());
         assertThat(restauranteBD.getTelefone()).isEqualTo(restauranteNovo.getTelefone());
         assertThat(restauranteBD.getHorarioFuncionamento()).isEqualTo(restauranteNovo.getHorarioFuncionamento());

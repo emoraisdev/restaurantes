@@ -1,6 +1,5 @@
 package com.fiap.restaurantes.model;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,7 +24,7 @@ public class Restaurante {
     private String telefone;
 
     @OneToOne
-    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
+    @JoinColumn(name = "endereco_id", referencedColumnName = "id", nullable = false)
     private Endereco endereco;
 
     @Column(nullable = false)
@@ -35,5 +34,5 @@ public class Restaurante {
     private String horarioFuncionamento;
 
     @Column(nullable = false)
-    private Integer capacidade;
+    private Integer qtdMesas;
 }

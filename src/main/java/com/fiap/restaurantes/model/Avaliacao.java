@@ -19,10 +19,10 @@ public class Avaliacao {
     private Integer nota;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id", nullable = false)
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name = "restaurante_id", referencedColumnName = "id")
+    @JoinColumn(name = "restaurante_id", referencedColumnName = "id", nullable = false)
     private Restaurante restaurante;
 }

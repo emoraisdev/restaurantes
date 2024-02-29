@@ -20,11 +20,9 @@ public class Avaliacao {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", referencedColumnName = "id")
-    @Column(nullable = false)
     private Cliente cliente;
 
     @ManyToOne
     @JoinColumn(name = "restaurante_id", referencedColumnName = "id")
-    @Column(nullable = false)
     private Restaurante restaurante;
 }

@@ -22,6 +22,5 @@ public class Cliente {
 
     @OneToOne
     @JoinColumn(name = "endereco_id", referencedColumnName = "id")
-    @Column(nullable = false)
     private Endereco endereco;
 }

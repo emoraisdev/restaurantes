@@ -26,7 +26,6 @@ public class Restaurante {
 
     @OneToOne
     @JoinColumn(name = "endereco_id", referencedColumnName = "id")
-    @Column(nullable = false)
     private Endereco endereco;
 
     @Column(nullable = false)

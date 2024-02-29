@@ -25,7 +25,6 @@ public class Reserva {
 
     @ManyToOne
     @JoinColumn(name = "restaurante_id", referencedColumnName = "id")
-    @Column(nullable = false)
     private Restaurante restaurante;
 
     @ManyToMany
@@ -37,7 +36,6 @@ public class Reserva {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", referencedColumnName = "id")
-    @Column(nullable = false)
     private Cliente cliente;
 
 }

@@ -19,6 +19,5 @@ public class Mesa {
 
     @ManyToOne
     @JoinColumn(name = "restaurante_id", referencedColumnName = "id")
-    @Column(nullable = false)
     private Restaurante restaurante;
 }

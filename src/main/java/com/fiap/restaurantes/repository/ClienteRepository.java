@@ -9,6 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-    @Query("SELECT c FROM Cliente c ORDER BY c.nome ASC")
     Page<Cliente> obterTodosClientes(Pageable pageable);
 }

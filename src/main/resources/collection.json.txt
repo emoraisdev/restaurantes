@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "fba299dc-7a3b-4a3c-a377-f702463cc1c8",
+		"name": "Avaliação API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17260916",
+		"_collection_link": "https://crimson-shuttle-91101.postman.co/workspace/Parquimetro~c3be8a7c-602e-4ed0-a0bd-d3b05442d471/collection/17260916-fba299dc-7a3b-4a3c-a377-f702463cc1c8?action=share&source=collection_link&creator=17260916"
+	},
+	"item": [
+		{
+			"name": "Avaliação",
+			"item": [
+				{
+					"name": "Salvar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comentario\": \"Excelente serviço!\",\n    \"nota\": 5,\n    \"cliente\": {\n        \"id\": \"65a1f4cb750f1a4d90be412\"\n    },\n    \"restaurante\": {\n        \"id\": \"65a1f4cb750f1a4d90be413\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/avaliacoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avaliacoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/avaliacoes/65a1f4cb750f1a4d90be414",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avaliacoes",
+								"65a1f4cb750f1a4d90be414"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/avaliacoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avaliacoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"65a1f4cb750f1a4d90be414\",\n    \"comentario\": \"Muito bom!\",\n    \"nota\": 4,\n    \"cliente\": {\n        \"id\": \"65a1f4cb750f1a4d90be412\"\n    },\n    \"restaurante\": {\n        \"id\": \"65a1f4cb750f1a4d90be413\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/avaliacoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avaliacoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/avaliacoes/65a1f4cb750f1a4d90be414",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avaliacoes",
+								"65a1f4cb750f1a4d90be414"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

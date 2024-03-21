@@ -1,6 +1,6 @@
 package com.fiap.restaurantes.service;
 
-import com.fiap.restaurantes.model.Cliente;
+import com.fiap.restaurantes.entity.Cliente;
 import com.fiap.restaurantes.repository.ClienteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -53,6 +53,6 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public Page<Cliente> listar(Pageable pageable) {
-        return clienteRepository.obterTodosClientes(pageable);
+        return clienteRepository.findAll(pageable);
     }
 }

@@ -1,6 +1,6 @@
 package com.fiap.restaurantes.service;
 
-import com.fiap.restaurantes.model.Restaurante;
+import com.fiap.restaurantes.entity.Restaurante;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -15,4 +15,5 @@ public interface RestauranteService {
     boolean remover(Long id);
 
     Page<Restaurante> listar(Pageable pageable);
+
 }

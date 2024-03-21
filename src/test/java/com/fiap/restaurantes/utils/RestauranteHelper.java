@@ -1,7 +1,7 @@
 package com.fiap.restaurantes.utils;
 
-import com.fiap.restaurantes.model.Endereco;
-import com.fiap.restaurantes.model.Restaurante;
+import com.fiap.restaurantes.entity.Endereco;
+import com.fiap.restaurantes.entity.Restaurante;
 
 public class RestauranteHelper {
 

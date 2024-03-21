@@ -1,7 +1,7 @@
 package com.fiap.restaurantes.repository;
 
-import com.fiap.restaurantes.model.Avaliacao;
-import com.fiap.restaurantes.model.Restaurante;
+import com.fiap.restaurantes.entity.Avaliacao;
+import com.fiap.restaurantes.entity.Restaurante;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

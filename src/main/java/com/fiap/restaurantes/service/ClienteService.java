@@ -1,6 +1,6 @@
 package com.fiap.restaurantes.service;
 
-import com.fiap.restaurantes.model.Cliente;
+import com.fiap.restaurantes.entity.Cliente;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

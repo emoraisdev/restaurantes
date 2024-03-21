@@ -1,4 +1,4 @@
-package com.fiap.restaurantes.model;
+package com.fiap.restaurantes.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

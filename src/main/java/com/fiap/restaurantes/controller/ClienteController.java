@@ -1,6 +1,6 @@
 package com.fiap.restaurantes.controller;
 
-import com.fiap.restaurantes.model.Cliente;
+import com.fiap.restaurantes.entity.Cliente;
 import com.fiap.restaurantes.service.ClienteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

@@ -1,14 +1,12 @@
 package com.fiap.restaurantes.service;
 
-import com.fiap.restaurantes.model.Cliente;
-import com.fiap.restaurantes.model.Mesa;
+import com.fiap.restaurantes.entity.Mesa;
 import com.fiap.restaurantes.repository.MesaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -55,7 +53,7 @@ public class MesaServiceImpl implements MesaService {
         if(status != null){
             mesas = mesaRepository.getMesasByStatus(status.intValue(), pageable);
         }else{
-            mesas = mesaRepository.obterTodasMesas(pageable);
+            mesas = mesaRepository.findAll(pageable);
         }
         return mesas;
     }

@@ -1,7 +1,7 @@
 package com.fiap.restaurantes.service;
 
 import com.fiap.restaurantes.exception.EntityNotFoundException;
-import com.fiap.restaurantes.model.Avaliacao;
+import com.fiap.restaurantes.entity.Avaliacao;
 import com.fiap.restaurantes.repository.AvaliacaoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

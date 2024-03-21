@@ -1,7 +1,9 @@
 package com.fiap.restaurantes.service;
 
 import com.fiap.restaurantes.exception.EntityNotFoundException;
-import com.fiap.restaurantes.model.Restaurante;
+import com.fiap.restaurantes.entity.Endereco;
+import com.fiap.restaurantes.entity.Restaurante;
+import com.fiap.restaurantes.repository.EnderecoRepository;
 import com.fiap.restaurantes.repository.RestauranteRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,6 +28,11 @@ class RestauranteServiceTest {
     @Mock
     private RestauranteRepository repo;
 
+    @Mock
+    private EnderecoRepository enderecoRepo;
+
+    private EnderecoService enderecoService;
+
     private RestauranteService service;
 
     AutoCloseable mock;
@@ -33,7 +40,8 @@ class RestauranteServiceTest {
     @BeforeEach
     void setup() {
         mock = MockitoAnnotations.openMocks(this);
-        service = new RestauranteServiceImpl(repo);
+        enderecoService = new EnderecoServiceImpl(enderecoRepo);
+        service = new RestauranteServiceImpl(repo, enderecoService);
     }
 
     @AfterEach
@@ -48,11 +56,14 @@ class RestauranteServiceTest {
 
         when(repo.save(any(Restaurante.class))).thenAnswer(i -> i.getArgument(0));
 
+        when(enderecoRepo.save(any(Endereco.class))).thenAnswer(i -> i.getArgument(0));
+
         var restauranteRegistrado = service.salvar(restaurante);
 
         assertRestaurante(restauranteRegistrado, restaurante);
 
         verify(repo, timeout(1)).save(any(Restaurante.class));
+        verify(enderecoRepo, timeout(1)).save(any(Endereco.class));
     }
 
     @Test
@@ -62,13 +73,14 @@ class RestauranteServiceTest {
         var restaurante = gerarRestaurante();
         restaurante.setId(id);
 
-        var restauranteNovo = gerarRestaurante();
-        restauranteNovo.setId(restaurante.getId());
-        restauranteNovo.setTipoCozinha("Pizza e Massas");
-        restauranteNovo.setNome("Pizza Top");
-        restauranteNovo.setQtdMesas(100);
-        restauranteNovo.setHorarioFuncionamento("24h por dia");
-        restauranteNovo.setTelefone("41 22222-2222");
+        var restauranteNovo = new Restaurante(
+                restaurante.getId(),
+                "Pizza e Massas",
+                "12312312",
+                restaurante.getEndereco(),
+                "",
+                "",
+                110);
 
         when(repo.findById(id)).thenReturn(Optional.of(restaurante));
         when(repo.save(restauranteNovo)).thenAnswer(i -> i.getArgument(0));

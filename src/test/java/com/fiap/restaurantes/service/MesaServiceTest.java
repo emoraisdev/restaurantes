@@ -1,6 +1,6 @@
 package com.fiap.restaurantes.service;
 
-import com.fiap.restaurantes.model.Mesa;
+import com.fiap.restaurantes.entity.Mesa;
 import com.fiap.restaurantes.repository.MesaRepository;
 import com.fiap.restaurantes.utils.RestauranteHelper;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,7 +37,7 @@ public class MesaServiceTest {
         mesas.add(new Mesa(1L, 1, 1, RestauranteHelper.gerarRestaurante()));
         mesas.add(new Mesa(2L, 2, 2, RestauranteHelper.gerarRestaurante()));
 
-        when(mesaRepository.obterTodasMesas(Pageable.unpaged())).thenReturn(new PageImpl<>(mesas));
+        when(mesaRepository.findAll(Pageable.unpaged())).thenReturn(new PageImpl<>(mesas));
 
         Page<Mesa> resultado = mesaService.listarMesas(null, Pageable.unpaged());
 

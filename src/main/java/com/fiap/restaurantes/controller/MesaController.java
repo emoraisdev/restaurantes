@@ -1,8 +1,6 @@
 package com.fiap.restaurantes.controller;
 
-import com.fiap.restaurantes.model.Cliente;
-import com.fiap.restaurantes.model.Mesa;
-import com.fiap.restaurantes.service.ClienteService;
+import com.fiap.restaurantes.entity.Mesa;
 import com.fiap.restaurantes.service.MesaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -11,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController

@@ -1,10 +1,9 @@
 package com.fiap.restaurantes.service;
 
-import com.fiap.restaurantes.model.Mesa;
+import com.fiap.restaurantes.entity.Mesa;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface MesaService {

@@ -1,7 +1,7 @@
 package com.fiap.restaurantes.service;
 
-import com.fiap.restaurantes.model.Cliente;
-import com.fiap.restaurantes.model.Endereco;
+import com.fiap.restaurantes.entity.Cliente;
+import com.fiap.restaurantes.entity.Endereco;
 import com.fiap.restaurantes.repository.ClienteRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -128,7 +128,7 @@ public class ClienteServiceTest {
         clientes.add(new Cliente(1L, "Cliente 1", "123456789", "cliente@example.com", "12345678901", null));
         clientes.add(new Cliente(2L, "Cliente 2", "987654321", "cliente2@example.com", "98765432101", null));
 
-        when(clienteRepository.obterTodosClientes(Pageable.unpaged())).thenReturn(new PageImpl<>(clientes));
+        when(clienteRepository.findAll(Pageable.unpaged())).thenReturn(new PageImpl<>(clientes));
 
         Page<Cliente> resultado = clienteService.listar(Pageable.unpaged());
 

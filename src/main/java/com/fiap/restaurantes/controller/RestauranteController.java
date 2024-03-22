@@ -1,9 +1,12 @@
 package com.fiap.restaurantes.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fiap.restaurantes.entity.Restaurante;
 import com.fiap.restaurantes.exception.EntityNotFoundException;
 import com.fiap.restaurantes.service.RestauranteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -47,5 +50,30 @@ public class RestauranteController {
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
+    }
+
+    @DeleteMapping(value = "/{id}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<?> remover(@PathVariable Long id) {
+
+        try {
+            service.remover(id);
+            return new ResponseEntity<>("Restaurante Removido", HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+    @GetMapping(
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Page<Restaurante>> listar(@RequestParam(defaultValue = "0") int page,
+                                                 @RequestParam(defaultValue = "10") int size) throws JsonProcessingException {
+
+        var restaurantes = service.listar(PageRequest.of(page, size));
+
+        return new ResponseEntity<>(restaurantes, HttpStatus.OK);
     }
 }

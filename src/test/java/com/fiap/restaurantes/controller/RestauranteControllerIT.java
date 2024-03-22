@@ -51,7 +51,7 @@ public class RestauranteControllerIT {
             given()
                     .contentType(MediaType.APPLICATION_JSON_VALUE)
                     .body(restaurante)
-//                    .log().all()
+                    .log().all()
                     .when()
                     .post("/restaurantes")
                     .then()
@@ -112,6 +112,67 @@ public class RestauranteControllerIT {
         @Test
         void deveGerarExcecao_QuandoAlterarRestaurante_IdNaoExiste() throws Exception {
 
+            var restaurante = gerarRestaurante();
+            restaurante.setId(2001L);
+
+            given()
+                    .contentType(MediaType.APPLICATION_JSON_VALUE)
+                    .body(restaurante)
+                    .when()
+                    .put("/restaurantes")
+                    .then()
+                    .statusCode(HttpStatus.BAD_REQUEST.value())
+                    .body(equalTo("Entidade Restaurante não encontrada."));
+        }
+    }
+
+    @Nested
+    class RemoverRestaurante {
+
+        @Test
+        void devePermitirRemoverRestaurante() throws Exception {
+
+            var id = 103L;
+
+            given()
+                    .contentType(MediaType.APPLICATION_JSON_VALUE)
+                    .when()
+                    .delete("/restaurantes/{id}", id)
+                    .then()
+                    .statusCode(HttpStatus.OK.value())
+                    .body(equalTo("Restaurante Removido"));
+        }
+
+        @Test
+        void deveGerarExcecao_QuandoRemoverMensagem_IdNaoExiste() throws Exception {
+            var id = 2001L;
+
+            given()
+                    .contentType(MediaType.APPLICATION_JSON_VALUE)
+                    .when()
+                    .delete("/restaurantes/{id}", id)
+                    .then()
+                    .statusCode(HttpStatus.BAD_REQUEST.value())
+                    .body(equalTo("Entidade Restaurante não encontrada."));
+        }
+
+    }
+
+    @Nested
+    class ListarRestaurante {
+
+        @Test
+        void devePermitirListarRestaurante() throws Exception {
+
+            given()
+                    .contentType(MediaType.APPLICATION_JSON_VALUE)
+                    .queryParams("page", "0")
+                    .queryParams("size", "10")
+                    .when()
+                    .get("/restaurantes")
+                    .then()
+                    .statusCode(HttpStatus.OK.value())
+                    .body(matchesJsonSchemaInClasspath("schemas/lista_restaurante.schema.json"));
         }
     }
 }

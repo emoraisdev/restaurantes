@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "fba299dc-7a3b-4a3c-a377-f702463cc1c8",
-		"name": "Avaliação API",
+		"_postman_id": "f532c5c4-cef8-41b5-91db-2a119d748561",
+		"name": "Restaurante APIs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "17260916",
-		"_collection_link": "https://crimson-shuttle-91101.postman.co/workspace/Parquimetro~c3be8a7c-602e-4ed0-a0bd-d3b05442d471/collection/17260916-fba299dc-7a3b-4a3c-a377-f702463cc1c8?action=share&source=collection_link&creator=17260916"
+		"_exporter_id": "23155843"
 	},
 	"item": [
 		{
@@ -120,6 +119,132 @@
 							"path": [
 								"avaliacoes",
 								"65a1f4cb750f1a4d90be414"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Restaurante",
+			"item": [
+				{
+					"name": "Salvar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Cantina da Vó\",\n    \"telefone\": \"11 11111-1111\",\n    \"endereco\": {\n        \"rua\": \"Rua XV\",\n        \"numero\": \"121\",\n        \"bairro\": \"Cruzeiro\",\n        \"cidade\": \"Curitiba\",\n        \"estado\": \"PR\",\n        \"pais\": \"Brasil\",\n        \"cep\": \"12345-321\"\n    },\n    \"tipoCozinha\": \"Caseira\",\n    \"horarioFuncionamento\": \"16:00h as 23:30h todos os dias\",\n    \"qtdMesas\": 50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/restaurantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/restaurantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\" : 2,\n    \"nome\": \"Cantina da Vovó\",\n    \"telefone\": \"11 11111-1111\",\n    \"endereco\": {\n        \"id\" : 2,\n        \"rua\": \"Rua XV\",\n        \"numero\": \"121\",\n        \"bairro\": \"Cruzeiro\",\n        \"cidade\": \"Pinhais\",\n        \"estado\": \"PR\",\n        \"pais\": \"Brasil\",\n        \"cep\": \"12345-321\"\n    },\n    \"tipoCozinha\": \"Caseira\",\n    \"horarioFuncionamento\": \"16:00h as 23:30h todos os dias\",\n    \"qtdMesas\": 50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/restaurantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"2"
 							]
 						}
 					},

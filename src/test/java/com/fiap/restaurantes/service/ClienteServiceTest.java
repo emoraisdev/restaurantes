@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class ClienteServiceTest {
+class ClienteServiceTest {
     @Mock
     private ClienteRepository clienteRepository;
 
@@ -32,7 +32,7 @@ public class ClienteServiceTest {
     }
 
     @Test
-    public void testObterTodosClientes() {
+    void testObterTodosClientes() {
         List<Cliente> clientes = new ArrayList<>();
         clientes.add(new Cliente(1L, "Cliente 1", "123456789", "cliente1@example.com", "12345678901", new Endereco()));
         clientes.add(new Cliente(2L, "Cliente 2", "987654321", "cliente2@example.com", "98765432101", new Endereco()));
@@ -46,7 +46,7 @@ public class ClienteServiceTest {
     }
 
     @Test
-    public void testObterClientePorId() {
+    void testObterClientePorId() {
         Cliente cliente = new Cliente(1L, "Cliente 1", "123456789", "cliente1@example.com", "12345678901", new Endereco());
 
         when(clienteRepository.findById(1L)).thenReturn(Optional.of(cliente));
@@ -59,7 +59,7 @@ public class ClienteServiceTest {
     }
 
     @Test
-    public void testCriarCliente() {
+    void testCriarCliente() {
         Cliente cliente = new Cliente(1L, "Novo Cliente", "987654321", "novo_cliente@example.com", "98765432101", new Endereco());
 
         when(clienteRepository.save(cliente)).thenReturn(cliente);
@@ -71,7 +71,7 @@ public class ClienteServiceTest {
     }
 
     @Test
-    public void testAtualizarClienteExistente() {
+    void testAtualizarClienteExistente() {
         Cliente cliente = new Cliente(1L, "Cliente Antigo", "123456789", "cliente_antigo@example.com", "12345678901", new Endereco());
         Cliente clienteAtualizado = new Cliente(1L, "Cliente Atualizado", "987654321", "cliente_atualizado@example.com", "98765432101", new Endereco());
 
@@ -87,7 +87,7 @@ public class ClienteServiceTest {
     }
 
     @Test
-    public void testAtualizarClienteNaoExistente() {
+    void testAtualizarClienteNaoExistente() {
         Cliente cliente = new Cliente(1L, "Cliente Antigo", "123456789", "cliente_antigo@example.com", "12345678901", new Endereco());
         Cliente clienteAtualizado = new Cliente(1L, "Cliente Atualizado", "987654321", "cliente_atualizado@example.com", "98765432101", new Endereco());
 
@@ -101,7 +101,7 @@ public class ClienteServiceTest {
     }
 
     @Test
-    public void testDeletarClienteExistente() {
+    void testDeletarClienteExistente() {
         when(clienteRepository.existsById(1L)).thenReturn(true);
 
         boolean deletado = clienteService.deletarCliente(1L);
@@ -112,7 +112,7 @@ public class ClienteServiceTest {
     }
 
     @Test
-    public void testDeletarClienteNaoExistente() {
+    void testDeletarClienteNaoExistente() {
         when(clienteRepository.existsById(1L)).thenReturn(false);
 
         boolean deletado = clienteService.deletarCliente(1L);
@@ -123,7 +123,7 @@ public class ClienteServiceTest {
     }
 
     @Test
-    public void testListarCliente() {
+    void testListarCliente() {
         List<Cliente> clientes = new ArrayList<>();
         clientes.add(new Cliente(1L, "Cliente 1", "123456789", "cliente@example.com", "12345678901", null));
         clientes.add(new Cliente(2L, "Cliente 2", "987654321", "cliente2@example.com", "98765432101", null));

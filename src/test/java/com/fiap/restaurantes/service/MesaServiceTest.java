@@ -19,7 +19,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class MesaServiceTest {
+class MesaServiceTest {
     @Mock
     private MesaRepository mesaRepository;
 
@@ -32,7 +32,7 @@ public class MesaServiceTest {
     }
 
     @Test
-    public void testObterTodasMesas() {
+    void testObterTodasMesas() {
         List<Mesa> mesas = new ArrayList<>();
         mesas.add(new Mesa(1L, 1, 1, RestauranteHelper.gerarRestaurante()));
         mesas.add(new Mesa(2L, 2, 2, RestauranteHelper.gerarRestaurante()));
@@ -45,7 +45,7 @@ public class MesaServiceTest {
     }
 
     @Test
-    public void testObterMesasPorStatus() {
+    void testObterMesasPorStatus() {
         List<Mesa> mesas = new ArrayList<>();
         mesas.add(new Mesa(1L, 1, 1, RestauranteHelper.gerarRestaurante()));
         mesas.add(new Mesa(2L, 2, 1, RestauranteHelper.gerarRestaurante()));
@@ -58,7 +58,7 @@ public class MesaServiceTest {
     }
 
     @Test
-    public void testObterMesaPorId() {
+    void testObterMesaPorId() {
         Mesa mesa = new Mesa(1L, 1, 1, RestauranteHelper.gerarRestaurante());
 
         when(mesaRepository.findById(1L)).thenReturn(Optional.of(mesa));
@@ -70,7 +70,7 @@ public class MesaServiceTest {
     }
 
     @Test
-    public void testCriarmesa() {
+    void testCriarmesa() {
         Mesa mesa = new Mesa(1L, 1, 1, RestauranteHelper.gerarRestaurante());
 
         when(mesaRepository.save(mesa)).thenReturn(mesa);
@@ -81,7 +81,7 @@ public class MesaServiceTest {
     }
 
     @Test
-    public void testAtualizarMesaExistente() {
+    void testAtualizarMesaExistente() {
         Mesa mesaUpdate = new Mesa(1L, 1, 2, RestauranteHelper.gerarRestaurante());
 
         when(mesaRepository.existsById(1L)).thenReturn(true);
@@ -96,7 +96,7 @@ public class MesaServiceTest {
     }
 
     @Test
-    public void testAtualizarMesaNaoExistente() {
+    void testAtualizarMesaNaoExistente() {
         Mesa mesaUpdate = new Mesa(1L, 1, 2, RestauranteHelper.gerarRestaurante());
 
         when(mesaRepository.existsById(1L)).thenReturn(false);
@@ -108,7 +108,7 @@ public class MesaServiceTest {
     }
 
     @Test
-    public void testDeletarMesaExistente() {
+    void testDeletarMesaExistente() {
         when(mesaRepository.existsById(1L)).thenReturn(true);
 
         boolean deletado = mesaService.deletarMesaPorId(1L);
@@ -119,7 +119,7 @@ public class MesaServiceTest {
     }
 
     @Test
-    public void testDeletarMesaNaoExistente() {
+    void testDeletarMesaNaoExistente() {
         when(mesaRepository.existsById(1L)).thenReturn(false);
 
         boolean deletado = mesaService.deletarMesaPorId(1L);

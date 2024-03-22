@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
-public class AvaliacaoServiceTest {
+class AvaliacaoServiceTest {
 
     @Mock
     private AvaliacaoRepository avaliacaoRepository;
@@ -33,7 +33,7 @@ public class AvaliacaoServiceTest {
     }
 
     @Test
-    public void testSalvarAvaliacao() {
+    void testSalvarAvaliacao() {
         Avaliacao avaliacao = new Avaliacao();
         avaliacao.setComentario("Ótimo restaurante!");
         avaliacao.setNota(5);
@@ -47,7 +47,7 @@ public class AvaliacaoServiceTest {
     }
 
     @Test
-    public void testBuscarAvaliacaoPorId() {
+    void testBuscarAvaliacaoPorId() {
         Avaliacao avaliacao = new Avaliacao();
         avaliacao.setId(1L);
         avaliacao.setComentario("Ótimo restaurante!");
@@ -62,7 +62,7 @@ public class AvaliacaoServiceTest {
     }
 
     @Test
-    public void testAlterarAvaliacao() {
+    void testAlterarAvaliacao() {
         Avaliacao avaliacao = new Avaliacao();
         avaliacao.setId(1L);
         avaliacao.setComentario("Ótimo restaurante!");
@@ -79,7 +79,7 @@ public class AvaliacaoServiceTest {
     }
 
     @Test
-    public void testRemoverAvaliacao() {
+    void testRemoverAvaliacao() {
         Avaliacao avaliacao = new Avaliacao();
         avaliacao.setId(1L);
         avaliacao.setComentario("Ótimo restaurante!");
@@ -95,7 +95,7 @@ public class AvaliacaoServiceTest {
     }
 
     @Test
-    public void testListarAvaliacoes() {
+    void testListarAvaliacoes() {
         Avaliacao avaliacao1 = new Avaliacao();
         avaliacao1.setId(1L);
         avaliacao1.setComentario("Comentário 1");

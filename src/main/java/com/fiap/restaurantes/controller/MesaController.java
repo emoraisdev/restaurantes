@@ -44,7 +44,7 @@ public class MesaController {
 
     @GetMapping("/listar/{status}")
     public ResponseEntity<Page<Mesa>> listarMesas(@PathVariable Integer status, Pageable pageable) {
-        Page<Mesa> mesas = mesaService.listarMesas(status.intValue(), pageable);
+        Page<Mesa> mesas = mesaService.listarMesas(status, pageable);
         return ResponseEntity.ok(mesas);
     }
 }

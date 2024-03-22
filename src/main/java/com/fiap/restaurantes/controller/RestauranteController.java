@@ -1,10 +1,9 @@
 package com.fiap.restaurantes.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fiap.restaurantes.entity.Restaurante;
 import com.fiap.restaurantes.exception.EntityNotFoundException;
 import com.fiap.restaurantes.service.RestauranteService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -12,14 +11,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-
 @RestController
 @RequestMapping("restaurantes")
+@RequiredArgsConstructor
 public class RestauranteController {
 
-    @Autowired
-    private RestauranteService service;
+    private final RestauranteService service;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -28,7 +25,7 @@ public class RestauranteController {
         return new ResponseEntity<>( restauranteRegistrado, HttpStatus.CREATED);
     }
     @GetMapping("/{id}")
-    public ResponseEntity<?> buscar(@PathVariable Long id) {
+    public ResponseEntity<Object> buscar(@PathVariable Long id) {
 
         try {
             var mensagem = service.buscar(id);
@@ -42,7 +39,7 @@ public class RestauranteController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<?> alterar(@RequestBody Restaurante restaurante) {
+    public ResponseEntity<Object> alterar(@RequestBody Restaurante restaurante) {
 
         try {
             var restauranteAlterado = service.alterar(restaurante);
@@ -56,7 +53,7 @@ public class RestauranteController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<?> remover(@PathVariable Long id) {
+    public ResponseEntity<String> remover(@PathVariable Long id) {
 
         try {
             service.remover(id);
@@ -70,7 +67,7 @@ public class RestauranteController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<Page<Restaurante>> listar(@RequestParam(defaultValue = "0") int page,
-                                                 @RequestParam(defaultValue = "10") int size) throws JsonProcessingException {
+                                                 @RequestParam(defaultValue = "10") int size) {
 
         var restaurantes = service.listar(PageRequest.of(page, size));
 

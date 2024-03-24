@@ -63,10 +63,9 @@ class MesaServiceTest {
 
         when(mesaRepository.findById(1L)).thenReturn(Optional.of(mesa));
 
-        Optional<Mesa> resultado = mesaService.obterMesaPorId(1L);
+        Mesa resultado = mesaService.obterMesaPorId(1L);
 
-        assertTrue(resultado.isPresent());
-        assertEquals(mesa, resultado.get());
+        assertEquals(mesa, resultado);
     }
 
     @Test
@@ -87,7 +86,7 @@ class MesaServiceTest {
         when(mesaRepository.existsById(1L)).thenReturn(true);
         when(mesaRepository.save(mesaUpdate)).thenReturn(mesaUpdate);
 
-        Optional<Mesa> mesaUpdateResultado = mesaService.atualizarMesa(1L, mesaUpdate);
+        Optional<Mesa> mesaUpdateResultado = mesaService.atualizarMesa(mesaUpdate);
 
         verify(mesaRepository, times(1)).existsById(1L);
         verify(mesaRepository, times(1)).save(mesaUpdate);
@@ -101,7 +100,7 @@ class MesaServiceTest {
 
         when(mesaRepository.existsById(1L)).thenReturn(false);
 
-        Optional<Mesa> mesaUpdateResultado = mesaService.atualizarMesa(1L, mesaUpdate);
+        Optional<Mesa> mesaUpdateResultado = mesaService.atualizarMesa(mesaUpdate);
 
         verify(mesaRepository, never()).save(any());
         assertTrue(mesaUpdateResultado.isEmpty());

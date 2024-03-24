@@ -1,6 +1,7 @@
 package com.fiap.restaurantes.controller;
 
 import com.fiap.restaurantes.entity.Mesa;
+import com.fiap.restaurantes.exception.EntityNotFoundException;
 import com.fiap.restaurantes.service.MesaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,9 +20,13 @@ public class MesaController {
     private final MesaService mesaService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Mesa> obterMesaPorId(@PathVariable Long id) {
-        Optional<Mesa> mesa = mesaService.obterMesaPorId(id);
-        return mesa.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<Object> obterMesaPorId(@PathVariable Long id) {
+        try {
+            Mesa mesa = mesaService.obterMesaPorId(id);
+            return new ResponseEntity<>(mesa, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping
@@ -30,9 +35,9 @@ public class MesaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(mesa);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Mesa> atualizarMesa(@PathVariable Long id, @RequestBody Mesa mesa) {
-        Optional<Mesa> mesaAtualizada = mesaService.atualizarMesa(id, mesa);
+    @PutMapping
+    public ResponseEntity<Mesa> atualizarMesa(@RequestBody Mesa mesa) {
+        Optional<Mesa> mesaAtualizada = mesaService.atualizarMesa(mesa);
         return mesaAtualizada.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
@@ -42,8 +47,8 @@ public class MesaController {
         return mesaDeletada ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/listar/{status}")
-    public ResponseEntity<Page<Mesa>> listarMesas(@PathVariable Integer status, Pageable pageable) {
+    @GetMapping("/listar")
+    public ResponseEntity<Page<Mesa>> listarMesas(@RequestParam(required = false) Integer status, Pageable pageable) {
         Page<Mesa> mesas = mesaService.listarMesas(status, pageable);
         return ResponseEntity.ok(mesas);
     }

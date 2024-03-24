@@ -35,4 +35,5 @@ public class Restaurante {
 
     @Column(nullable = false)
     private Integer qtdMesas;
+
 }

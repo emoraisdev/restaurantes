@@ -1,6 +1,8 @@
 package com.fiap.restaurantes.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -23,6 +25,18 @@ public class ControllerExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND.value())
                 .body(getStandardError(HttpStatus.NOT_FOUND.value(), "Erro na solicitação", erro.getMessage(), request.getRequestURI()));
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<StandardError> constraintViolationException(ConstraintViolationException erro, HttpServletRequest request){
+
+        String errorMessage = "";
+        for (ConstraintViolation<?> violation : erro.getConstraintViolations()) {
+            errorMessage += violation.getMessage() + ". ";
+        }
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .body(getStandardError(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Erro de validação", errorMessage, request.getRequestURI()));
     }
 
     private StandardError getStandardError(Integer status, String tipoErro, String mensagem, String uri){

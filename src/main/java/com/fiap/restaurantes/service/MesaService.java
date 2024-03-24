@@ -8,11 +8,11 @@ import java.util.Optional;
 
 public interface MesaService {
 
-    Optional<Mesa> obterMesaPorId(Long id);
+    Mesa obterMesaPorId(Long id);
 
     Mesa criarMesa(Mesa mesa);
 
-    Optional<Mesa> atualizarMesa(Long id, Mesa mesa);
+    Optional<Mesa> atualizarMesa(Mesa mesa);
 
     boolean deletarMesaPorId(Long id);
 

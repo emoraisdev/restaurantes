@@ -1,6 +1,8 @@
 package com.fiap.restaurantes.service;
 
 import com.fiap.restaurantes.entity.Mesa;
+import com.fiap.restaurantes.entity.Restaurante;
+import com.fiap.restaurantes.exception.EntityNotFoundException;
 import com.fiap.restaurantes.repository.MesaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -17,8 +19,9 @@ public class MesaServiceImpl implements MesaService {
 
 
     @Override
-    public Optional<Mesa> obterMesaPorId(Long id) {
-        return mesaRepository.findById(id);
+    public Mesa obterMesaPorId(Long id) {
+        return mesaRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(Mesa.class.getSimpleName()));
     }
 
     @Override
@@ -27,9 +30,8 @@ public class MesaServiceImpl implements MesaService {
     }
 
     @Override
-    public Optional<Mesa> atualizarMesa(Long id, Mesa mesa) {
-        if (mesaRepository.existsById(id)) {
-            mesa.setId(id);
+    public Optional<Mesa> atualizarMesa(Mesa mesa) {
+        if (mesaRepository.existsById(mesa.getId())) {
             return Optional.of(mesaRepository.save(mesa));
         } else {
             return Optional.empty();

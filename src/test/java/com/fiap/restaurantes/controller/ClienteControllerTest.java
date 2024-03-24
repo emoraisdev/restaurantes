@@ -161,7 +161,7 @@ class ClienteControllerTest {
 
         @Test
         void deveRetornarPaginaDeClientes() {
-            // Arrange
+
             List<Cliente> clientes = new ArrayList<>();
             clientes.add(new Cliente());
             clientes.add(new Cliente());
@@ -171,10 +171,8 @@ class ClienteControllerTest {
 
             when(clienteService.listar(pageable)).thenReturn(paginaClientes);
 
-            // Act
             ResponseEntity<Page<Cliente>> response = clienteController.listarClientes(pageable);
 
-            // Assert
             assertEquals(HttpStatus.OK, response.getStatusCode());
             assertEquals(paginaClientes, response.getBody());
             verify(clienteService, times(1)).listar(pageable);

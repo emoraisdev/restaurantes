@@ -1,0 +1,25 @@
+----------------------------------------------------
+-- criando a imagem:
+via CMD:
+- Acessar a pasta principal do projeto com o dockerfile do projeto
+
+comando:
+docker build -t restaurantes-image .
+
+
+- Acessar a pasta mysql do projeto com o dockerfile do mysql
+
+comando:
+docker build -t mysql-image .
+
+-----------------------------------------------------
+-- Subindo localmente no docker (criando os containers):
+
+- criando a rede
+docker network create restaurantes-net
+
+- Criando container mysql
+docker run -d --name mysql-container -p 3306:3306 -e MYSQL_ROOT_PASSWORD=toor --network restaurantes-net  mysql-image
+
+- Criando container da aplicação
+docker run -it --name restaurantes-container -p 8080:8080 -e DB_URL=mysql-container -e DB_NAME=restaurante -e DB_USERNAME=root -e DB_PASSWORD=toor --network restaurantes-net restaurantes-image

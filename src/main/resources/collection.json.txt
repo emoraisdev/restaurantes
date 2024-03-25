@@ -1,13 +1,13 @@
 {
 	"info": {
-		"_postman_id": "f532c5c4-cef8-41b5-91db-2a119d748561",
+		"_postman_id": "45c4d780-0bf3-4aae-b589-9526f3106bca",
 		"name": "Restaurante APIs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23155843"
 	},
 	"item": [
 		{
-			"name": "Avaliação",
+			"name": "Cliente",
 			"item": [
 				{
 					"name": "Salvar",
@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"comentario\": \"Excelente serviço!\",\n    \"nota\": 5,\n    \"cliente\": {\n        \"id\": \"65a1f4cb750f1a4d90be412\"\n    },\n    \"restaurante\": {\n        \"id\": \"65a1f4cb750f1a4d90be413\"\n    }\n}",
+							"raw": "{\n    \"nome\": \"Joaquim Nero\",\n    \"telefone\": \"11 11111-1111\",\n    \"email\": \"teste@teste.com\",\n    \"cpf\": \"99999999999\",\n    \"endereco\": {\n        \"rua\": \"Rua ZZY\",\n        \"numero\": \"1101\",\n        \"bairro\": \"Cruzeiro\",\n        \"cidade\": \"Rio de Janeiro\",\n        \"estado\": \"RJ\",\n        \"pais\": \"Brasil\",\n        \"cep\": \"12345-321\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -24,14 +24,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/avaliacoes",
+							"raw": "http://localhost:8080/clientes",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"avaliacoes"
+								"clientes"
 							]
 						}
 					},
@@ -43,15 +43,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/avaliacoes/65a1f4cb750f1a4d90be414",
+							"raw": "http://localhost:8080/clientes/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"avaliacoes",
-								"65a1f4cb750f1a4d90be414"
+								"clientes",
+								"1"
 							]
 						}
 					},
@@ -63,14 +63,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/avaliacoes",
+							"raw": "http://localhost:8080/clientes",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"avaliacoes"
+								"clientes"
 							]
 						}
 					},
@@ -83,7 +83,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"65a1f4cb750f1a4d90be414\",\n    \"comentario\": \"Muito bom!\",\n    \"nota\": 4,\n    \"cliente\": {\n        \"id\": \"65a1f4cb750f1a4d90be412\"\n    },\n    \"restaurante\": {\n        \"id\": \"65a1f4cb750f1a4d90be413\"\n    }\n}",
+							"raw": "{\n    \"nome\": \"João Nero\",\n    \"telefone\": \"11 11111-1111\",\n    \"email\": \"teste@teste.com\",\n    \"cpf\": \"99999999999\",\n    \"endereco\": {\n        \"id\": 3,\n        \"rua\": \"Rua ZZY\",\n        \"numero\": \"1101\",\n        \"bairro\": \"Copacabana\",\n        \"cidade\": \"Rio de Janeiro\",\n        \"estado\": \"RJ\",\n        \"pais\": \"Brasil\",\n        \"cep\": \"12345-321\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -91,14 +91,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/avaliacoes",
+							"raw": "http://localhost:8080/clientes/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"avaliacoes"
+								"clientes",
+								"1"
 							]
 						}
 					},
@@ -108,17 +109,23 @@
 					"name": "Excluir",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/avaliacoes/65a1f4cb750f1a4d90be414",
+							"raw": "http://localhost:8080/clientes/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"avaliacoes",
-								"65a1f4cb750f1a4d90be414"
+								"clientes",
+								"1"
 							]
 						}
 					},
@@ -245,6 +252,126 @@
 							"path": [
 								"restaurantes",
 								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Avaliação",
+			"item": [
+				{
+					"name": "Salvar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comentario\": \"Excelente serviço!\",\n    \"nota\": 5,\n    \"cliente\": {\n        \"id\": \"65a1f4cb750f1a4d90be412\"\n    },\n    \"restaurante\": {\n        \"id\": \"65a1f4cb750f1a4d90be413\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/avaliacoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avaliacoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/avaliacoes/65a1f4cb750f1a4d90be414",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avaliacoes",
+								"65a1f4cb750f1a4d90be414"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/avaliacoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avaliacoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"65a1f4cb750f1a4d90be414\",\n    \"comentario\": \"Muito bom!\",\n    \"nota\": 4,\n    \"cliente\": {\n        \"id\": \"65a1f4cb750f1a4d90be412\"\n    },\n    \"restaurante\": {\n        \"id\": \"65a1f4cb750f1a4d90be413\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/avaliacoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avaliacoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/avaliacoes/65a1f4cb750f1a4d90be414",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avaliacoes",
+								"65a1f4cb750f1a4d90be414"
 							]
 						}
 					},

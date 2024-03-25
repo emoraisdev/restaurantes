@@ -3,6 +3,9 @@ package com.fiap.restaurantes.service;
 import com.fiap.restaurantes.entity.Cliente;
 import com.fiap.restaurantes.entity.Endereco;
 import com.fiap.restaurantes.repository.ClienteRepository;
+import com.fiap.restaurantes.repository.EnderecoRepository;
+import org.hibernate.mapping.Any;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -23,12 +26,26 @@ class ClienteServiceTest {
     @Mock
     private ClienteRepository clienteRepository;
 
-    @InjectMocks
+    @Mock
+    private EnderecoRepository enderecoRepo;
+
+    private EnderecoService enderecoService;
+
     private ClienteServiceImpl clienteService;
+
+    AutoCloseable mock;
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        mock = MockitoAnnotations.openMocks(this);
+
+        enderecoService = new EnderecoServiceImpl(enderecoRepo);
+        clienteService = new ClienteServiceImpl(clienteRepository, enderecoService);
+    }
+
+    @AfterEach
+    void tearDown() throws Exception {
+        mock.close();
     }
 
     @Test
@@ -72,11 +89,24 @@ class ClienteServiceTest {
 
     @Test
     void testAtualizarClienteExistente() {
-        Cliente cliente = new Cliente(1L, "Cliente Antigo", "123456789", "cliente_antigo@example.com", "12345678901", new Endereco());
-        Cliente clienteAtualizado = new Cliente(1L, "Cliente Atualizado", "987654321", "cliente_atualizado@example.com", "98765432101", new Endereco());
+
+        var endereco = Endereco.builder()
+                .id(1L)
+                .rua("Rua AA")
+                .bairro("Pinhais")
+                .numero("121")
+                .cep("12345-321")
+                .cidade("Pinhais")
+                .estado("PR")
+                .pais("Brasil").build();
+
+        Cliente clienteAtualizado = new Cliente(1L, "Cliente Atualizado", "987654321", "cliente_atualizado@example.com", "98765432101",
+                endereco);
 
         when(clienteRepository.existsById(1L)).thenReturn(true);
         when(clienteRepository.save(clienteAtualizado)).thenReturn(clienteAtualizado);
+        when(enderecoRepo.save(endereco)).thenAnswer(i -> i.getArgument(0));
+        when(enderecoRepo.findById((any(Long.class)))).thenReturn(Optional.of(endereco));
 
         Optional<Cliente> clienteAtualizadoOpt = clienteService.atualizarCliente(1L, clienteAtualizado);
 
@@ -102,7 +132,23 @@ class ClienteServiceTest {
 
     @Test
     void testDeletarClienteExistente() {
+
+        var endereco = Endereco.builder()
+                .id(1L)
+                .rua("Rua AA")
+                .bairro("Pinhais")
+                .numero("121")
+                .cep("12345-321")
+                .cidade("Pinhais")
+                .estado("PR")
+                .pais("Brasil").build();
+
+        Cliente cliente = new Cliente(1L, "Cliente Atualizado", "987654321", "cliente_atualizado@example.com", "98765432101",
+                endereco);
+
         when(clienteRepository.existsById(1L)).thenReturn(true);
+        when(clienteRepository.findById(1L)).thenReturn(Optional.of(cliente));
+        when(enderecoRepo.existsById(1L)).thenReturn(true);
 
         boolean deletado = clienteService.deletarCliente(1L);
 

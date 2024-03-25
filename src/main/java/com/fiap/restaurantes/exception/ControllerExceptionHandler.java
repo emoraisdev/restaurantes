@@ -37,13 +37,13 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<StandardError> constraintViolationException(ConstraintViolationException erro, HttpServletRequest request){
 
-        String errorMessage = "";
+        StringBuilder errorMessage = new StringBuilder();
         for (ConstraintViolation<?> violation : erro.getConstraintViolations()) {
-            errorMessage += violation.getMessage() + ". ";
+            errorMessage.append(violation.getMessage()).append(". ");
         }
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
-                .body(getStandardError(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Erro de validação", errorMessage, request.getRequestURI()));
+                .body(getStandardError(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Erro de validação", errorMessage.toString(), request.getRequestURI()));
     }
 
     private StandardError getStandardError(Integer status, String tipoErro, String mensagem, String uri){

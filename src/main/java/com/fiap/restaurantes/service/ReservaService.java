@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface ReservaService {
     Reserva criarReserva(Reserva reserva);
 
-    Page<Reserva> listarReservas(Integer status, Pageable pageable);
+    Page<Reserva> listarReservas(Pageable pageable);
 
     Optional<Reserva> alterarReserva(Long id, Reserva reserva);
 

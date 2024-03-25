@@ -1,7 +1,7 @@
 package com.fiap.restaurantes.service;
 
 import com.fiap.restaurantes.entity.Mesa;
-import com.fiap.restaurantes.entity.Restaurante;
+import com.fiap.restaurantes.entity.enums.MesaStatus;
 import com.fiap.restaurantes.exception.EntityNotFoundException;
 import com.fiap.restaurantes.repository.MesaRepository;
 import lombok.RequiredArgsConstructor;
@@ -53,7 +53,7 @@ public class MesaServiceImpl implements MesaService {
         Page<Mesa> mesas = null;
 
         if(status != null){
-            mesas = mesaRepository.getMesasByStatus(status.intValue(), pageable);
+            mesas = mesaRepository.getMesasByStatus(MesaStatus.fromValue(status), pageable);
         }else{
             mesas = mesaRepository.findAll(pageable);
         }

@@ -1,6 +1,7 @@
 package com.fiap.restaurantes.service;
 
 import com.fiap.restaurantes.entity.Mesa;
+import com.fiap.restaurantes.entity.enums.MesaStatus;
 import com.fiap.restaurantes.repository.MesaRepository;
 import com.fiap.restaurantes.utils.RestauranteHelper;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,8 +35,8 @@ class MesaServiceTest {
     @Test
     void testObterTodasMesas() {
         List<Mesa> mesas = new ArrayList<>();
-        mesas.add(new Mesa(1L, 1, 1, RestauranteHelper.gerarRestaurante()));
-        mesas.add(new Mesa(2L, 2, 2, RestauranteHelper.gerarRestaurante()));
+        mesas.add(new Mesa(1L, 1, MesaStatus.OCUPADA, RestauranteHelper.gerarRestaurante()));
+        mesas.add(new Mesa(2L, 2, MesaStatus.LIVRE, RestauranteHelper.gerarRestaurante()));
 
         when(mesaRepository.findAll(Pageable.unpaged())).thenReturn(new PageImpl<>(mesas));
 
@@ -47,19 +48,19 @@ class MesaServiceTest {
     @Test
     void testObterMesasPorStatus() {
         List<Mesa> mesas = new ArrayList<>();
-        mesas.add(new Mesa(1L, 1, 1, RestauranteHelper.gerarRestaurante()));
-        mesas.add(new Mesa(2L, 2, 1, RestauranteHelper.gerarRestaurante()));
+        mesas.add(new Mesa(1L, 1, MesaStatus.OCUPADA, RestauranteHelper.gerarRestaurante()));
+        mesas.add(new Mesa(2L, 2, MesaStatus.OCUPADA, RestauranteHelper.gerarRestaurante()));
 
-        when(mesaRepository.getMesasByStatus(1, Pageable.unpaged())).thenReturn(new PageImpl<>(mesas));
+        when(mesaRepository.getMesasByStatus(MesaStatus.OCUPADA, Pageable.unpaged())).thenReturn(new PageImpl<>(mesas));
 
-        Page<Mesa> resultado = mesaService.listarMesas(1, Pageable.unpaged());
+        Page<Mesa> resultado = mesaService.listarMesas(0, Pageable.unpaged());
 
         assertEquals(mesas.size(), resultado.getContent().size());
     }
 
     @Test
     void testObterMesaPorId() {
-        Mesa mesa = new Mesa(1L, 1, 1, RestauranteHelper.gerarRestaurante());
+        Mesa mesa = new Mesa(1L, 1, MesaStatus.OCUPADA, RestauranteHelper.gerarRestaurante());
 
         when(mesaRepository.findById(1L)).thenReturn(Optional.of(mesa));
 
@@ -70,7 +71,7 @@ class MesaServiceTest {
 
     @Test
     void testCriarmesa() {
-        Mesa mesa = new Mesa(1L, 1, 1, RestauranteHelper.gerarRestaurante());
+        Mesa mesa = new Mesa(1L, 1, MesaStatus.OCUPADA, RestauranteHelper.gerarRestaurante());
 
         when(mesaRepository.save(mesa)).thenReturn(mesa);
 
@@ -81,7 +82,7 @@ class MesaServiceTest {
 
     @Test
     void testAtualizarMesaExistente() {
-        Mesa mesaUpdate = new Mesa(1L, 1, 2, RestauranteHelper.gerarRestaurante());
+        Mesa mesaUpdate = new Mesa(1L, 1, MesaStatus.LIVRE, RestauranteHelper.gerarRestaurante());
 
         when(mesaRepository.existsById(1L)).thenReturn(true);
         when(mesaRepository.save(mesaUpdate)).thenReturn(mesaUpdate);
@@ -96,7 +97,7 @@ class MesaServiceTest {
 
     @Test
     void testAtualizarMesaNaoExistente() {
-        Mesa mesaUpdate = new Mesa(1L, 1, 2, RestauranteHelper.gerarRestaurante());
+        Mesa mesaUpdate = new Mesa(1L, 1, MesaStatus.LIVRE, RestauranteHelper.gerarRestaurante());
 
         when(mesaRepository.existsById(1L)).thenReturn(false);
 

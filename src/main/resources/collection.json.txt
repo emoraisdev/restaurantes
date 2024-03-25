@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "45c4d780-0bf3-4aae-b589-9526f3106bca",
+		"_postman_id": "d272e1d4-2f36-4041-afc8-ecf1d4898590",
 		"name": "Restaurante APIs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23155843"
@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Joaquim Nero\",\n    \"telefone\": \"11 11111-1111\",\n    \"email\": \"teste@teste.com\",\n    \"cpf\": \"99999999999\",\n    \"endereco\": {\n        \"rua\": \"Rua ZZY\",\n        \"numero\": \"1101\",\n        \"bairro\": \"Cruzeiro\",\n        \"cidade\": \"Rio de Janeiro\",\n        \"estado\": \"RJ\",\n        \"pais\": \"Brasil\",\n        \"cep\": \"12345-321\"\n    }\n}",
+							"raw": "{\n    \"nome\": \"Mario Nero\",\n    \"telefone\": \"11 11111-1111\",\n    \"email\": \"teste@teste.com\",\n    \"cpf\": \"99999999999\",\n    \"endereco\": {\n        \"rua\": \"Rua ZZY\",\n        \"numero\": \"1101\",\n        \"bairro\": \"Cruzeiro\",\n        \"cidade\": \"Rio de Janeiro\",\n        \"estado\": \"RJ\",\n        \"pais\": \"Brasil\",\n        \"cep\": \"12345-321\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -24,12 +24,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/clientes",
-							"protocol": "http",
+							"raw": "{{URL}}/clientes",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"clientes"
 							]
@@ -43,15 +41,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/clientes/1",
-							"protocol": "http",
+							"raw": "{{URL}}/clientes/2",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"clientes",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -63,12 +59,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/clientes",
-							"protocol": "http",
+							"raw": "{{URL}}/clientes",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"clientes"
 							]
@@ -91,15 +85,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/clientes/1",
-							"protocol": "http",
+							"raw": "{{URL}}/clientes/2",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"clientes",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -117,12 +109,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/clientes/1",
-							"protocol": "http",
+							"raw": "{{URL}}/clientes/1",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"clientes",
 								"1"
@@ -151,12 +141,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes",
-							"protocol": "http",
+							"raw": "{{URL}}/restaurantes",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"restaurantes"
 							]
@@ -170,15 +158,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/2",
-							"protocol": "http",
+							"raw": "{{URL}}/restaurantes/1",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"restaurantes",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -190,12 +176,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes",
-							"protocol": "http",
+							"raw": "{{URL}}/restaurantes",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"restaurantes"
 							]
@@ -210,7 +194,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\" : 2,\n    \"nome\": \"Cantina da Vovó\",\n    \"telefone\": \"11 11111-1111\",\n    \"endereco\": {\n        \"id\" : 2,\n        \"rua\": \"Rua XV\",\n        \"numero\": \"121\",\n        \"bairro\": \"Cruzeiro\",\n        \"cidade\": \"Pinhais\",\n        \"estado\": \"PR\",\n        \"pais\": \"Brasil\",\n        \"cep\": \"12345-321\"\n    },\n    \"tipoCozinha\": \"Caseira\",\n    \"horarioFuncionamento\": \"16:00h as 23:30h todos os dias\",\n    \"qtdMesas\": 50\n}",
+							"raw": "{\n    \"id\" : 1,\n    \"nome\": \"Cantina da Vovó\",\n    \"telefone\": \"11 11111-1111\",\n    \"endereco\": {\n        \"id\" : 1,\n        \"rua\": \"Rua XV\",\n        \"numero\": \"121\",\n        \"bairro\": \"Cruzeiro\",\n        \"cidade\": \"Pinhais\",\n        \"estado\": \"PR\",\n        \"pais\": \"Brasil\",\n        \"cep\": \"12345-321\"\n    },\n    \"tipoCozinha\": \"Caseira\",\n    \"horarioFuncionamento\": \"16:00h as 23:30h todos os dias\",\n    \"qtdMesas\": 50\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -218,12 +202,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes",
-							"protocol": "http",
+							"raw": "{{URL}}/restaurantes",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"restaurantes"
 							]
@@ -243,12 +225,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/2",
-							"protocol": "http",
+							"raw": "{{URL}}/restaurantes/2",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"restaurantes",
 								"2"
@@ -269,7 +249,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"comentario\": \"Excelente serviço!\",\n    \"nota\": 5,\n    \"cliente\": {\n        \"id\": \"65a1f4cb750f1a4d90be412\"\n    },\n    \"restaurante\": {\n        \"id\": \"65a1f4cb750f1a4d90be413\"\n    }\n}",
+							"raw": "{\n    \"comentario\": \"Excelente serviço!\",\n    \"nota\": 5,\n    \"cliente\": {\n        \"id\": 2\n    },\n    \"restaurante\": {\n        \"id\": 1\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -277,12 +257,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/avaliacoes",
-							"protocol": "http",
+							"raw": "{{URL}}/avaliacoes",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"avaliacoes"
 							]
@@ -296,15 +274,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/avaliacoes/65a1f4cb750f1a4d90be414",
-							"protocol": "http",
+							"raw": "{{URL}}/avaliacoes/1",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"avaliacoes",
-								"65a1f4cb750f1a4d90be414"
+								"1"
 							]
 						}
 					},
@@ -316,12 +292,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/avaliacoes",
-							"protocol": "http",
+							"raw": "{{URL}}/avaliacoes",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"avaliacoes"
 							]
@@ -336,7 +310,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"65a1f4cb750f1a4d90be414\",\n    \"comentario\": \"Muito bom!\",\n    \"nota\": 4,\n    \"cliente\": {\n        \"id\": \"65a1f4cb750f1a4d90be412\"\n    },\n    \"restaurante\": {\n        \"id\": \"65a1f4cb750f1a4d90be413\"\n    }\n}",
+							"raw": "{\n    \"id\": 1,\n    \"comentario\": \"Muito bom!\",\n    \"nota\": 4,\n    \"cliente\": {\n        \"id\": 2\n    },\n    \"restaurante\": {\n        \"id\": 1\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -344,14 +318,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/avaliacoes",
-							"protocol": "http",
+							"raw": "{{URL}}/avaliacoes/1",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
-								"avaliacoes"
+								"avaliacoes",
+								"1"
 							]
 						}
 					},
@@ -363,15 +336,148 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/avaliacoes/65a1f4cb750f1a4d90be414",
-							"protocol": "http",
+							"raw": "{{URL}}/avaliacoes/3",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"avaliacoes",
-								"65a1f4cb750f1a4d90be414"
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Mesa",
+			"item": [
+				{
+					"name": "Salvar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"numero\": 6,\n    \"status\": 0,\n    \"restaurante\": {\n        \"id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/mesa",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"mesa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/mesa/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"mesa",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/mesa/listar",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"mesa",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Por Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/mesa/listar?status=0",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"mesa",
+								"listar"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"numero\": 7,\n    \"status\": 1,\n    \"restaurante\": {\n        \"id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/mesa",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"mesa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/mesa/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"mesa",
+								"2"
 							]
 						}
 					},
@@ -389,7 +495,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"periodoDe\": \"2024-03-23T19:01:00.959Z\",\n  \"periodoAte\": \"2024-03-23T21:00:00.959Z\",\n  \"status\": 1,\n  \"restaurante\": {\n    \"id\": 1\n  },\n  \"mesa\": [\n    {\n      \"id\": 1\n    }\n  ],\n  \"cliente\": {\n    \"id\": 1\n  },\n  \"qtdPessoasReserva\": 0\n}",
+							"raw": "{\n  \"periodoDe\": \"2024-03-23T22:01:00.959Z\",\n  \"periodoAte\": \"2024-03-23T23:00:00.959Z\",\n  \"restaurante\": {\n    \"id\": 1\n  },\n  \"mesa\": [\n    {\n      \"id\": 1\n    }\n  ],\n  \"cliente\": {\n    \"id\": 2\n  },\n  \"qtdPessoasReserva\": 4\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -397,12 +503,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/reserva",
-							"protocol": "http",
+							"raw": "{{URL}}/reserva",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"reserva"
 							]
@@ -416,12 +520,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/reserva/1",
-							"protocol": "http",
+							"raw": "{{URL}}/reserva/1",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"reserva",
 								"1"
@@ -436,21 +538,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/reserva/listar?status=1",
-							"protocol": "http",
+							"raw": "{{URL}}/reserva/listar",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"reserva",
 								"listar"
-							],
-							"query": [
-								{
-									"key": "status",
-									"value": "1"
-								}
 							]
 						}
 					},
@@ -463,7 +557,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"periodoDe\": \"2024-03-23T01:10:00.959Z\",\n  \"periodoAte\": \"2024-03-23T02:10:00.959Z\",\n  \"status\": 0,\n  \"restaurante\": {\n    \"id\": 1\n  },\n  \"mesa\": [\n    {\n      \"id\": 1\n    }\n  ],\n  \"cliente\": {\n    \"id\": 1\n  },\n  \"qtdPessoasReserva\":3\n}",
+							"raw": "{\n    \"periodoDe\": \"2024-03-24T01:10:00.959Z\",\n    \"periodoAte\": \"2024-03-25T02:10:00.959Z\",\n    \"restaurante\": {\n        \"id\": 1\n    },\n    \"mesa\": [\n        {\n            \"id\": 1\n        }\n    ],\n    \"cliente\": {\n        \"id\": 2\n    },\n    \"qtdPessoasReserva\": 3\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -471,12 +565,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/reserva/1",
-							"protocol": "http",
+							"raw": "{{URL}}/reserva/1",
 							"host": [
-								"localhost"
+								"{{URL}}"
 							],
-							"port": "8080",
 							"path": [
 								"reserva",
 								"1"
@@ -484,34 +576,37 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Excluir",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/reserva/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"reserva",
-								"2"
-							]
-						}
-					},
-					"response": []
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://3.133.60.75:8080",
+			"type": "string"
 		}
 	]
 }

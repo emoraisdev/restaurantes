@@ -1,5 +1,6 @@
 package com.fiap.restaurantes.entity;
 
+import com.fiap.restaurantes.entity.enums.MesaStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,7 +22,7 @@ public class Mesa {
     private Integer numero;
 
     @Column(nullable = false)
-    private int status;
+    private MesaStatus status;
 
     @ManyToOne
     @JoinColumn(name = "restaurante_id", referencedColumnName = "id", nullable = false)

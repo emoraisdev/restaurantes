@@ -31,8 +31,8 @@ public class ReservaController {
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<Page<Reserva>> listarReservas(@RequestParam(required = false) Integer status, Pageable pageable) {
-        Page<Reserva> mesas = reservaService.listarReservas(status, pageable);
+    public ResponseEntity<Page<Reserva>> listarReservas(Pageable pageable) {
+        Page<Reserva> mesas = reservaService.listarReservas(pageable);
         return ResponseEntity.ok(mesas);
     }
 

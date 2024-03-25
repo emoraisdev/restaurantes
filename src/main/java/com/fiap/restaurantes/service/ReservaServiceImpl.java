@@ -55,8 +55,8 @@ public class ReservaServiceImpl implements ReservaService {
         restauranteService.buscar(reserva.getRestaurante().getId());
     }
 
-    private void verificarCliente(Reserva reserva) {
-        clienteService.obterClientePorId(reserva.getCliente().getId()).orElseThrow(() -> new EntityNotFoundException(Cliente.class.getSimpleName()));
+    private Cliente verificarCliente(Reserva reserva) {
+        return clienteService.obterClientePorId(reserva.getCliente().getId()).orElseThrow(() -> new EntityNotFoundException(Cliente.class.getSimpleName()));
     }
 
     private void verificarMesa(Reserva reserva) {
@@ -67,15 +67,8 @@ public class ReservaServiceImpl implements ReservaService {
     }
 
     @Override
-    public Page<Reserva> listarReservas(Integer status, Pageable pageable) {
-        Page<Reserva> reservas = null;
-
-        if(status != null){
-            reservas = reservaRepository.listarReservasByStatus(status, pageable);
-        }else{
-            reservas = reservaRepository.listarReservas(pageable);
-        }
-        return reservas;
+    public Page<Reserva> listarReservas(Pageable pageable) {
+        return reservaRepository.listarReservas(pageable);
     }
 
     @Override

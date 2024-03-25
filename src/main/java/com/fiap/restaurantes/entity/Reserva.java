@@ -28,9 +28,6 @@ public class Reserva {
     @Column(nullable = false)
     private LocalDateTime periodoAte;
 
-    @Column(nullable = false)
-    private int status;
-
     @ManyToOne
     @JoinColumn(name = "restaurante_id", referencedColumnName = "id", nullable = false)
     private Restaurante restaurante;

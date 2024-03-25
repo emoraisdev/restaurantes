@@ -70,18 +70,7 @@ class ReservaServiceTest {
 
         when(reservaRepository.listarReservas(Pageable.unpaged())).thenReturn(new PageImpl<>(reservas));
 
-        Page<Reserva> resultado = reservaService.listarReservas(null, Pageable.unpaged());
-
-        assertEquals(reservas.size(), resultado.getContent().size());
-    }
-
-    @Test
-    void deveObterReservasPorStatus() {
-        List<Reserva> reservas =  ReservaHelper.getListaReservas();
-
-        when(reservaRepository.listarReservasByStatus(1,Pageable.unpaged())).thenReturn(new PageImpl<>(reservas));
-
-        Page<Reserva> resultado = reservaService.listarReservas(1, Pageable.unpaged());
+        Page<Reserva> resultado = reservaService.listarReservas(Pageable.unpaged());
 
         assertEquals(reservas.size(), resultado.getContent().size());
     }
@@ -152,7 +141,7 @@ class ReservaServiceTest {
 
 
     private Reserva getReserva(){
-      return ReservaHelper.getReserva(1L, 1, LocalDateTime.of(2024, 3, 22, 17, 0, 0), LocalDateTime.of(2024, 3, 22, 18, 0, 0),4);
+      return ReservaHelper.getReserva(1L, LocalDateTime.of(2024, 3, 22, 17, 0, 0), LocalDateTime.of(2024, 3, 22, 18, 0, 0),4);
     }
 
 }

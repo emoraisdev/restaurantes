@@ -3,6 +3,7 @@ package com.fiap.restaurantes.utils;
 import com.fiap.restaurantes.entity.Endereco;
 import com.fiap.restaurantes.entity.Mesa;
 import com.fiap.restaurantes.entity.Restaurante;
+import com.fiap.restaurantes.entity.enums.MesaStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class MesaHelper {
     public static Mesa gerarMesa(Long id, int numero){
        return Mesa.builder()
                 .id(id)
-                .status(1)
+                .status(MesaStatus.OCUPADA)
                 .numero(numero)
                 .restaurante(RestauranteHelper.gerarRestaurante())
                 .build();
